@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed">
     <Grid Cursor="Hand">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -25,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="AudioList" d:ItemsSource="{d:SampleData ItemCount=10
-            }" Grid.ColumnSpan="7" Margin="36,29,36,52" Grid.RowSpan="4" FontSize="16" FontFamily="Times New Roman" Cursor="Hand"/>
+            }" Grid.ColumnSpan="7" Margin="36,29,36,52" Grid.RowSpan="4" FontSize="16" FontFamily="Times New Roman" Cursor="Hand" SelectionChanged="AudioList_SelectionChanged"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="780" Grid.Column="3" FontSize="18" TextAlignment="Center"><Run Language="ru-ru" Text="Аудиоплеер"/></TextBlock>
         <Button x:Name="Play"
             Style="{StaticResource MaterialDesignIconForegroundButton}"
@@ -59,15 +59,15 @@
             Content="{materialDesign:PackIcon Kind=Repeat, Size=25}"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
-            IsChecked="False" Click="ReapeatAudio" />
+            IsChecked="False" />
         <ToggleButton x:Name="Mixer"  Grid.Column="0" Margin="56,20,10,19" Grid.Row="4"
             Content="{materialDesign:PackIcon Kind=Shuffle, Size=25}"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
             IsChecked="False" />
-        <MediaElement x:Name="media" LoadedBehavior="Manual" MediaOpened="MaximumSlider"/>
+        <MediaElement x:Name="media" UnloadedBehavior = "Manual" LoadedBehavior="Manual" MediaOpened="MaximumSlider" MediaEnded="media_MediaEnded" />
         <Slider x:Name="slider" Grid.Row="3" Grid.ColumnSpan="7" Height="40" Width="720" VerticalAlignment="Bottom" HorizontalAlignment="Center" ValueChanged="PositionAudioSlider"/>
-        <TextBlock x:Name="StartTb" HorizontalAlignment="Center"  Height="20"  Grid.Column="0" Grid.Row="3" Text="TextBlock" VerticalAlignment="Bottom" Width="50"/>
-        <TextBlock x:Name="EndTb" HorizontalAlignment="Center"  Height="20"  Grid.Column="7" Grid.Row="3"  Text="TextBlock" VerticalAlignment="Bottom" Width="50"/>
+        <TextBlock x:Name="StartTb" HorizontalAlignment="Center"  Height="20"  Grid.Column="0" Grid.Row="3" Text="00:00" VerticalAlignment="Bottom" Width="50"/>
+        <TextBlock x:Name="EndTb" HorizontalAlignment="Right"  Height="20"  Grid.Column="7" Grid.Row="3"  Text="00:00" VerticalAlignment="Bottom" Width="50"/>
     </Grid>
 </Window>
